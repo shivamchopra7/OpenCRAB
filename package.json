@@ -13,6 +13,14 @@
   ],
   "license": "MIT",
   "author": "Shivam Chopra <shivam@illusionart.ai>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamchopra7/OpenCRAB.git"
+  },
+  "homepage": "https://illusionart.ai",
+  "bugs": {
+    "url": "https://github.com/shivamchopra7/OpenCRAB/issues"
+  },
   "bin": {
     "opencrab": "opencrab.mjs"
   },

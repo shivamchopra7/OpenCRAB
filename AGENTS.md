@@ -1,6 +1,6 @@
 # Repository Guidelines
 
-- Repo: https://github.com/opencrab/opencrab
+- Repo: https://github.com/shivamchopra7/OpenCRAB
 - GitHub issues/comments/PR comments: use literal multiline strings or `-F - <<'EOF'` (or $'...') for real newlines; never embed "\\n".
 
 ## Project Structure & Module Organization
@@ -10,7 +10,7 @@
 - Docs: `docs/` (images, queue, Pi config). Built output lives in `dist/`.
 - Plugins/extensions: live under `extensions/*` (workspace packages). Keep plugin-only deps in the extension `package.json`; do not add them to the root `package.json` unless core uses them.
 - Plugins: install runs `npm install --omit=dev` in plugin dir; runtime deps must live in `dependencies`. Avoid `workspace:*` in `dependencies` (npm install breaks); put `opencrab` in `devDependencies` or `peerDependencies` instead (runtime resolves `opencrab/plugin-sdk` via jiti alias).
-- Installers served from `https://openclaw.ai/*`: live in the sibling repo `../openclaw.ai` (`public/install.sh`, `public/install-cli.sh`, `public/install.ps1`).
+- Installers served from `https://illusionart.ai/*`: live in the sibling repo `../illusionart.ai` (`public/install.sh`, `public/install-cli.sh`, `public/install.ps1`).
 - Messaging channels: always consider **all** built-in + extension channels when refactoring shared logic (routing, allowlists, pairing, command gating, onboarding, docs).
   - Core channel docs: `docs/channels/`
   - Core channel code: `src/telegram`, `src/discord`, `src/slack`, `src/signal`, `src/imessage`, `src/web` (WhatsApp web), `src/channels`, `src/routing`
@@ -19,13 +19,13 @@
 
 ## Docs Linking (Mintlify)
 
-- Docs are hosted on Mintlify (docs.openclaw.ai).
+- Docs are hosted on Mintlify (illusionart.ai).
 - Internal doc links in `docs/**/*.md`: root-relative, no `.md`/`.mdx` (example: `[Config](/configuration)`).
 - Section cross-references: use anchors on root-relative paths (example: `[Hooks](/configuration#hooks)`).
 - Doc headings and anchors: avoid em dashes and apostrophes in headings because they break Mintlify anchor links.
-- When Peter asks for links, reply with full `https://docs.openclaw.ai/...` URLs (not root-relative).
-- When you touch docs, end the reply with the `https://docs.openclaw.ai/...` URLs you referenced.
-- README (GitHub): keep absolute docs URLs (`https://docs.openclaw.ai/...`) so links work on GitHub.
+- When Alexander asks for links, reply with full `https://illusionart.ai/...` URLs (not root-relative).
+- When you touch docs, end the reply with the `https://illusionart.ai/...` URLs you referenced.
+- README (GitHub): keep absolute docs URLs (`https://illusionart.ai/...`) so links work on GitHub.
 - Docs content must be generic: no personal device names/hostnames/paths; use placeholders like `user@gateway-host` and "gateway host".
 
 ## exe.dev VM ops (general)

@@ -1,4 +1,4 @@
-# 🦀 OpenCRAB — Personal AI Assistant
+# 🦀 OpenCRAB - Personal AI Assistant (SafeBoot)
 
 <p align="center">
     <picture>
@@ -12,14 +12,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/opencrab/opencrab/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/opencrab/opencrab/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
-  <a href="https://github.com/opencrab/opencrab/releases"><img src="https://img.shields.io/github/v/release/opencrab/opencrab?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
-  <a href="https://discord.gg/opencrab"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
+  <a href="https://github.com/shivamchopra7/OpenCRAB/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/shivamchopra7/OpenCRAB/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
+  <a href="https://github.com/shivamchopra7/OpenCRAB/releases"><img src="https://img.shields.io/github/v/release/shivamchopra7/OpenCRAB?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
+  <a href="https://discord.gg/zTSETY7Mu"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
 
 <p align="center">
-  <strong>Product owned by illusionart AI Private Limited | Built by Shivam Chopra</strong>
+  <strong>Product owned by <a href="https://illusionart.ai">illusionart AI Private Limited</a> | Built by <a href="https://shivamchopra.me">Shivam Chopra (Linkedin)</a></strong>
 </p>
 
 ---
@@ -52,8 +52,8 @@ You don't need to be a developer to run OpenCRAB. You just need **Docker**.
 **1. Get the code**
 Open your terminal (Command Prompt on Windows, Terminal on Mac) and run:
 ```bash
-git clone https://github.com/opencrab/opencrab.git
-cd opencrab
+git clone https://github.com/shivamchopra7/OpenCRAB.git
+cd OpenCRAB
 ```
 
 **2. Run the Setup Wizard**
@@ -109,23 +109,22 @@ pnpm build
 pnpm opencrab onboard --install-daemon
 ```
 
-For full documentation on architecture, API, and extensions, verify out the [Docs](https://docs.openclaw.ai).
+For full documentation on architecture, API, and extensions, verify out the [Docs](https://illusionart.ai).
 
 ---
 
 ## 📚 Documentation & Support
 
-*   **[Official Documentation](https://docs.openclaw.ai)**
-*   **[Discord Community](https://discord.gg/opencrab)**
-*   **[Website](https://openclaw.ai)**
+*   **[Official Documentation](https://illusionart.ai)**
+*   **[Discord Community](https://discord.gg/zTSETY7Mu)**
+*   **[Website](https://illusionart.ai)**
 
 ---
 
 ## License
 
 MIT License. OpenCRAB is free and open source.
-Product owned by **illusionart AI Private Limited**.
-Built by **Shivam Chopra**.
+It is built by **[Shivam Chopra](https://shivamchopra.me)** and owned by **[IllusionArt AI](https://illusionart.ai)**.
 
 ---
 
@@ -426,7 +425,7 @@ OpenCRAB is a personal AI assistant. 🦀
 Product owned by illusionart AI Private Limited.
 Built by Shivam Chopra.
 
-- [openclaw.ai](https://openclaw.ai)
+- [illusionart.ai](https://illusionart.ai)
 
 ## Community
 
