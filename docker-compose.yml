@@ -1,0 +1,49 @@
+services:
+  opencrab-gateway:
+    image: ${OPENCRAB_IMAGE:-${OPENCLAW_IMAGE:-opencrab:local}}
+    environment:
+      HOME: /home/node
+      TERM: xterm-256color
+      OPENCRAB_GATEWAY_TOKEN: ${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN}}
+      OPENCLAW_GATEWAY_TOKEN: ${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN}}
+      CLAUDE_AI_SESSION_KEY: ${CLAUDE_AI_SESSION_KEY}
+      CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY}
+      CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE}
+    volumes:
+      - ${OPENCRAB_CONFIG_DIR:-${OPENCLAW_CONFIG_DIR:-~/.opencrab}}:/home/node/.opencrab
+      - ${OPENCRAB_WORKSPACE_DIR:-${OPENCLAW_WORKSPACE_DIR:-~/.opencrab/workspace}}:/home/node/.opencrab/workspace
+    ports:
+      - "${OPENCRAB_GATEWAY_PORT:-${OPENCLAW_GATEWAY_PORT:-18789}}:18789"
+      - "${OPENCRAB_BRIDGE_PORT:-${OPENCLAW_BRIDGE_PORT:-18790}}:18790"
+    init: true
+    restart: unless-stopped
+    command:
+      - "node"
+      - "dist/index.js"
+      - "gateway"
+      - "--allow-unconfigured"
+      - "--bind"
+      - "${OPENCRAB_GATEWAY_BIND:-${OPENCLAW_GATEWAY_BIND:-lan}}"
+      - "--port"
+      - "18789"
+
+  # Optional CLI service for interactive use
+  opencrab-cli:
+    image: ${OPENCRAB_IMAGE:-${OPENCLAW_IMAGE:-opencrab:local}}
+    environment:
+      HOME: /home/node
+      TERM: xterm-256color
+      OPENCRAB_GATEWAY_TOKEN: ${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN}}
+      BROWSER: echo
+      CLAUDE_AI_SESSION_KEY: ${CLAUDE_AI_SESSION_KEY}
+      CLAUDE_WEB_SESSION_KEY: ${CLAUDE_WEB_SESSION_KEY}
+      CLAUDE_WEB_COOKIE: ${CLAUDE_WEB_COOKIE}
+    volumes:
+      - ${OPENCRAB_CONFIG_DIR:-${OPENCLAW_CONFIG_DIR:-~/.opencrab}}:/home/node/.opencrab
+      - ${OPENCRAB_WORKSPACE_DIR:-${OPENCLAW_WORKSPACE_DIR:-~/.opencrab/workspace}}:/home/node/.opencrab/workspace
+    stdin_open: true
+    tty: true
+    init: true
+    entrypoint: [ "node", "dist/index.js" ]
+    profiles:
+      - cli

@@ -1,0 +1,23 @@
+# OpenCRAB Render deployment configuration
+# Product owned by illusionart AI Private Limited | Built by Shivam Chopra
+services:
+  - type: web
+    name: opencrab
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: SETUP_PASSWORD
+        sync: false
+      - key: OPENCRAB_STATE_DIR
+        value: /data/.opencrab
+      - key: OPENCRAB_WORKSPACE_DIR
+        value: /data/workspace
+      - key: OPENCRAB_GATEWAY_TOKEN
+        generateValue: true
+    disk:
+      name: opencrab-data
+      mountPath: /data
+      sizeGB: 1
