@@ -1,6 +1,6 @@
 {
   "name": "opencrab",
-  "version": "2026.2.1",
+  "version": "2026.3.0",
   "description": "OpenCRAB - Personal AI Assistant with multi-channel messaging gateway",
   "keywords": [
     "ai",
@@ -18,7 +18,6 @@
   },
   "files": [
     "assets/",
-    "CHANGELOG.md",
     "dist/",
     "docs/",
     "extensions/",

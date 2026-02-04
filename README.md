@@ -2,8 +2,8 @@
 
 <p align="center">
     <picture>
-        <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/opencrab/opencrab/main/docs/assets/opencrab-logo-text-dark.png">
-        <img src="https://raw.githubusercontent.com/opencrab/opencrab/main/docs/assets/opencrab-logo-text.png" alt="OpenCRAB" width="500">
+        <source media="(prefers-color-scheme: light)" srcset="./illusionart.png.png">
+        <img src="./illusionart.png.png" alt="OpenCRAB" width="500">
     </picture>
 </p>
 
