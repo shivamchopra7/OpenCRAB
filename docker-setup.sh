@@ -80,8 +80,11 @@ mkdir -p "$OPENCRAB_WORKSPACE_DIR"
 # Generate gateway token if not set
 if [[ -z "${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN:-}}" ]]; then
   OPENCRAB_GATEWAY_TOKEN=$(openssl rand -hex 16 2>/dev/null || head -c 32 /dev/urandom | xxd -p | head -c 32)
-  echo "==> Generated gateway token: $OPENCRAB_GATEWAY_TOKEN"
-  # Persist to .env to prevent token rotation on every run
+  echo "==> Generated gateway token: ${OPENCRAB_GATEWAY_TOKEN:0:6}... (saved to .env)"
+  # Persist to .env with restrictive permissions to prevent token rotation on every run
+  umask 077
+  touch .env
+  chmod 600 .env
   echo "OPENCRAB_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN" >> .env
   echo "OPENCLAW_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN" >> .env
 fi

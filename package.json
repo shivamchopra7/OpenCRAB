@@ -31,7 +31,7 @@
     "extensions/",
     "LICENSE",
     "opencrab.mjs",
-    "README-header.png",
+    "illusionart.png",
     "README.md",
     "skills/"
   ],
@@ -250,7 +250,6 @@
       "apps/macos/**",
       "apps/macos/.build/**",
       "**/vendor/**",
-      "apps/macos/.build/**",
       "dist/OpenCRAB.app/**"
     ]
   }
