@@ -2,14 +2,11 @@
   "name": "openclaw",
   "version": "2026.3.0",
   "description": "Compatibility shim that forwards to opencrab",
-  "bin": {
-    "openclaw": "./bin/openclaw.js"
-  },
   "type": "module",
   "exports": {
     ".": "./index.js",
     "./plugin-sdk": "./plugin-sdk.js",
-    "./cli-entry": "./bin/openclaw.js"
+    "./cli-entry": "./cli-entry.js"
   },
   "dependencies": {
     "opencrab": "workspace:*"
