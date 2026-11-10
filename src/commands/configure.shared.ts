@@ -66,7 +66,7 @@ export const confirm = (params: Parameters<typeof clackConfirm>[0]) =>
     ...params,
     message: stylePromptMessage(params.message),
   });
-export const select = <T>(params: {
+export const select = <const T>(params: {
   message: string;
   options: Array<{ value: T; label?: string; hint?: string }>;
   initialValue?: T;

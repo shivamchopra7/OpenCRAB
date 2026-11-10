@@ -81,22 +81,34 @@ mkdir -p "$OPENCRAB_WORKSPACE_DIR"
 if [[ -z "${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN:-}}" ]]; then
   OPENCRAB_GATEWAY_TOKEN=$(openssl rand -hex 16 2>/dev/null || head -c 32 /dev/urandom | xxd -p | head -c 32)
   echo "==> Generated gateway token: ${OPENCRAB_GATEWAY_TOKEN:0:6}... (saved to .env)"
-  # Persist to .env with restrictive permissions to prevent token rotation on every run
-  umask 077
-  touch .env
-  chmod 600 .env
-  echo "OPENCRAB_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN" >> .env
-  echo "OPENCLAW_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN" >> .env
 fi
 export OPENCRAB_GATEWAY_TOKEN="${OPENCRAB_GATEWAY_TOKEN:-${OPENCLAW_GATEWAY_TOKEN}}"
+
+# Persist configuration to .env with restrictive permissions
+umask 077
+touch .env
+chmod 600 .env
+{
+  echo "OPENCRAB_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN"
+  echo "OPENCLAW_GATEWAY_TOKEN=$OPENCRAB_GATEWAY_TOKEN"
+  echo "OPENCRAB_DOCKER_APT_PACKAGES=$APT_PACKAGES"
+  echo "OPENCLAW_DOCKER_APT_PACKAGES=$APT_PACKAGES"
+  echo "OPENCRAB_EXTRA_MOUNTS=$EXTRA_MOUNTS"
+  echo "OPENCLAW_EXTRA_MOUNTS=$EXTRA_MOUNTS"
+  echo "OPENCRAB_HOME_VOLUME=$HOME_VOLUME_NAME"
+  echo "OPENCLAW_HOME_VOLUME=$HOME_VOLUME_NAME"
+} >> .env
 
 # Export for docker-compose
 export OPENCRAB_CONFIG_DIR
 export OPENCRAB_WORKSPACE_DIR
 export OPENCRAB_IMAGE="$IMAGE_NAME"
 export OPENCRAB_DOCKER_APT_PACKAGES="${APT_PACKAGES}"
+export OPENCLAW_DOCKER_APT_PACKAGES="${APT_PACKAGES}"
 export OPENCRAB_EXTRA_MOUNTS="$EXTRA_MOUNTS"
+export OPENCLAW_EXTRA_MOUNTS="$EXTRA_MOUNTS"
 export OPENCRAB_HOME_VOLUME="$HOME_VOLUME_NAME"
+export OPENCLAW_HOME_VOLUME="$HOME_VOLUME_NAME"
 
 # Build the Docker image
 echo ""
@@ -104,6 +116,7 @@ echo "==> Building Docker image: $IMAGE_NAME"
 BUILD_ARGS=()
 if [[ -n "$APT_PACKAGES" ]]; then
   BUILD_ARGS+=(--build-arg "OPENCRAB_DOCKER_APT_PACKAGES=$APT_PACKAGES")
+  BUILD_ARGS+=(--build-arg "OPENCLAW_DOCKER_APT_PACKAGES=$APT_PACKAGES")
 fi
 
 docker build ${BUILD_ARGS[@]+"${BUILD_ARGS[@]}"} -t "$IMAGE_NAME" .
