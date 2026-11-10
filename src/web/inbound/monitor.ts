@@ -122,7 +122,9 @@ export async function monitorWebInbox(options: {
   const resolveInboundJid = async (jid: string | null | undefined): Promise<string | null> =>
     resolveJidToE164(jid, { authDir: options.authDir, lidLookup });
 
-  const getGroupMeta = async (jid: string) => {
+  const getGroupMeta = async (
+    jid: string,
+  ): Promise<{ subject?: string; participants?: string[]; expires: number }> => {
     const cached = groupMetaCache.get(jid);
     if (cached && cached.expires > Date.now()) {
       return cached;
