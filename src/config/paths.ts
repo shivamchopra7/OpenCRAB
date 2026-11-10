@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import type { OpenCRABConfig, OpenClawConfig } from "./types.js";
+import type { OpenClawConfig } from "./types.js";
 
 /**
  * Nix mode detection: When OPENCRAB_NIX_MODE=1 (or OPENCLAW_NIX_MODE=1), the gateway is running under Nix.
