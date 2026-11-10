@@ -29,10 +29,11 @@
 **OpenCRAB** is a personal AI assistant that lives on **your** computer, not in the cloud. It's smart, safe, and works with the apps you already use.
 
 Imagine an AI that:
-*   💬 **Chats with you** on WhatsApp, Telegram, Discord, Slack, and Signal.
-*   🧠 **Remembers** your projects, tasks, and preferences.
-*   🔒 **Keeps your data private** by running locally on your machine.
-*   🛠️ **Can do things** like searching the web, managing files (safely!), and running everyday tasks.
+
+- 💬 **Chats with you** on WhatsApp, Telegram, Discord, Slack, and Signal.
+- 🧠 **Remembers** your projects, tasks, and preferences.
+- 🔒 **Keeps your data private** by running locally on your machine.
+- 🛠️ **Can do things** like searching the web, managing files (safely!), and running everyday tasks.
 
 It's like having a smart intern who works 24/7, lives on your laptop, and never gossips.
 
@@ -43,14 +44,16 @@ It's like having a smart intern who works 24/7, lives on your laptop, and never 
 You don't need to be a developer to run OpenCRAB. You just need **Docker**.
 
 ### Prerequisites
+
 1.  **Install Docker Desktop**:
-    *   [Download for Mac, Windows, or Linux](https://www.docker.com/products/docker-desktop/)
-    *   Install it and open the app to make sure it's running.
+    - [Download for Mac, Windows, or Linux](https://www.docker.com/products/docker-desktop/)
+    - Install it and open the app to make sure it's running.
 
 ### step-by-step Guide
 
 **1. Get the code**
 Open your terminal (Command Prompt on Windows, Terminal on Mac) and run:
+
 ```bash
 git clone https://github.com/shivamchopra7/OpenCRAB.git
 cd OpenCRAB
@@ -58,6 +61,7 @@ cd OpenCRAB
 
 **2. Run the Setup Wizard**
 We've made a simple script that sets everything up for you. Just copy and paste this command:
+
 ```bash
 ./docker-setup.sh
 ```
@@ -76,10 +80,10 @@ From there, you can connect it to WhatsApp, Telegram, or just chat right in the 
 
 **Yes.** We designed OpenCRAB with safety and privacy as the #1 priority.
 
-*   ** Sandbox Isolation**: OpenCRAB runs inside a **Docker Container**. Think of this like a secure sandbox or a virtual machine.
-*   **No Access to Your Files**: By default, OpenCRAB **cannot see or touch your personal files** (photos, documents, desktop). It lives in its own little bubble.
-*   **You Are in Control**: If you *want* it to work on files, you have to explicitly give it permission. Otherwise, it's completely isolated.
-*   **Safe Tools**: Every "action" the AI takes (like browsing the web or running a command) happens inside this safe bubble. It can't delete your files or mess up your computer.
+- ** Sandbox Isolation**: OpenCRAB runs inside a **Docker Container**. Think of this like a secure sandbox or a virtual machine.
+- **No Access to Your Files**: By default, OpenCRAB **cannot see or touch your personal files** (photos, documents, desktop). It lives in its own little bubble.
+- **You Are in Control**: If you _want_ it to work on files, you have to explicitly give it permission. Otherwise, it's completely isolated.
+- **Safe Tools**: Every "action" the AI takes (like browsing the web or running a command) happens inside this safe bubble. It can't delete your files or mess up your computer.
 
 You can sleep soundly knowing your AI is powerful but strictly contained. 🦀
 
@@ -87,11 +91,11 @@ You can sleep soundly knowing your AI is powerful but strictly contained. 🦀
 
 ## ✨ Features
 
-*   **Multi-Channel**: Chat from anywhere – desktop, mobile, or web.
-*   **Voice Mode**: Speak to it naturally (requires app setup).
-*   **Smart Memory**: It remembers context across conversations.
-*   **Web Browsing**: It can look up live info for you.
-*   **Live Canvas**: A visual workspace for complex tasks.
+- **Multi-Channel**: Chat from anywhere – desktop, mobile, or web.
+- **Voice Mode**: Speak to it naturally (requires app setup).
+- **Smart Memory**: It remembers context across conversations.
+- **Web Browsing**: It can look up live info for you.
+- **Live Canvas**: A visual workspace for complex tasks.
 
 ---
 
@@ -115,9 +119,9 @@ For full documentation on architecture, API, and extensions, verify out the [Doc
 
 ## 📚 Documentation & Support
 
-*   **[Official Documentation](https://illusionart.ai)**
-*   **[Discord Community](https://discord.gg/zTSETY7Mu)**
-*   **[Website](https://illusionart.ai)**
+- **[Official Documentation](https://illusionart.ai)**
+- **[Discord Community](https://discord.gg/zTSETY7Mu)**
+- **[Website](https://illusionart.ai)**
 
 ---
 
@@ -131,7 +135,6 @@ It is built by **[Shivam Chopra](https://shivamchopra.me)** and owned by **[Illu
 ## 🔧 Technical Reference
 
 The following sections cover advanced architecture, configuration, and operational details for power users.
-
 
 ## How it works (short)
 

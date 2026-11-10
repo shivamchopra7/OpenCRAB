@@ -17,12 +17,12 @@ import { stylePromptHint, stylePromptMessage, stylePromptTitle } from "../termin
 import { theme } from "../terminal/theme.js";
 import { WizardCancelledError } from "./prompts.js";
 
-function guardCancel<T>(value: T | symbol): T {
+function guardCancel<T>(value: T): Exclude<T, symbol> {
   if (isCancel(value)) {
     cancel(stylePromptTitle("Setup cancelled.") ?? "Setup cancelled.");
     throw new WizardCancelledError();
   }
-  return value;
+  return value as Exclude<T, symbol>;
 }
 
 export function createClackPrompter(): WizardPrompter {

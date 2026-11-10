@@ -66,11 +66,16 @@ export const confirm = (params: Parameters<typeof clackConfirm>[0]) =>
     ...params,
     message: stylePromptMessage(params.message),
   });
-export const select = <T>(params: Parameters<typeof clackSelect<T>>[0]) =>
+export const select = <T>(params: {
+  message: string;
+  options: Array<{ value: T; label?: string; hint?: string }>;
+  initialValue?: T;
+  maxItems?: number;
+}): Promise<T | symbol> =>
   clackSelect({
     ...params,
     message: stylePromptMessage(params.message),
     options: params.options.map((opt) =>
       opt.hint === undefined ? opt : { ...opt, hint: stylePromptHint(opt.hint) },
     ),
-  });
+  } as Parameters<typeof clackSelect>[0]) as Promise<T | symbol>;

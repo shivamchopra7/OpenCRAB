@@ -44,6 +44,6 @@ services:
     stdin_open: true
     tty: true
     init: true
-    entrypoint: [ "node", "dist/index.js" ]
+    entrypoint: ["node", "dist/index.js"]
     profiles:
       - cli

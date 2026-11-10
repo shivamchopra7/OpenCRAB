@@ -14,8 +14,12 @@ A2UI_RENDERER_DIR="$ROOT_DIR/vendor/a2ui/renderers/lit"
 A2UI_APP_DIR="$ROOT_DIR/apps/shared/OpenClawKit/Tools/CanvasA2UI"
 
 # Docker builds exclude vendor/apps via .dockerignore.
-# In that environment we must keep the prebuilt bundle.
+# In that environment we must keep the prebuilt bundle (or create a stub if none is present).
 if [[ ! -d "$A2UI_RENDERER_DIR" || ! -d "$A2UI_APP_DIR" ]]; then
+  if [[ ! -f "$OUTPUT_FILE" ]]; then
+    mkdir -p "$(dirname "$OUTPUT_FILE")"
+    printf 'window.openclawA2UI = window.openclawA2UI || {};\n' > "$OUTPUT_FILE"
+  fi
   echo "A2UI sources missing; keeping prebuilt bundle."
   exit 0
 fi

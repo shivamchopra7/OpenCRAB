@@ -77,7 +77,7 @@ function printSessionUpdate(notification: SessionNotification): void {
 export async function createAcpClient(opts: AcpClientOptions = {}): Promise<AcpClientHandle> {
   const cwd = opts.cwd ?? process.cwd();
   const verbose = Boolean(opts.verbose);
-  const log = verbose ? (msg: string) => console.error(`[acp-client] ${msg}`) : () => { };
+  const log = verbose ? (msg: string) => console.error(`[acp-client] ${msg}`) : () => {};
 
   ensureOpenClawCliOnPath({ cwd });
   const serverCommand = opts.serverCommand ?? "openclaw";

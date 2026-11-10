@@ -6,12 +6,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext",
-      "ScriptHost"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "ScriptHost"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "noEmit": true,
@@ -21,10 +16,7 @@
     "strict": true,
     "target": "ESNext"
   },
-  "include": [
-    "src/**/*",
-    "ui/**/*"
-  ],
+  "include": ["src/**/*", "ui/**/*"],
   "exclude": [
     "node_modules",
     "dist",

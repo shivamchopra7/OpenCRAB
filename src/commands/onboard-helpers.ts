@@ -26,12 +26,12 @@ import {
 import { GATEWAY_CLIENT_MODES, GATEWAY_CLIENT_NAMES } from "../utils/message-channel.js";
 import { VERSION } from "../version.js";
 
-export function guardCancel<T>(value: T | symbol, runtime: RuntimeEnv): T {
+export function guardCancel<T>(value: T, runtime: RuntimeEnv): Exclude<T, symbol> {
   if (isCancel(value)) {
     cancel(stylePromptTitle("Setup cancelled.") ?? "Setup cancelled.");
     runtime.exit(0);
   }
-  return value;
+  return value as Exclude<T, symbol>;
 }
 
 export function summarizeExistingConfig(config: OpenClawConfig): string {
@@ -76,10 +76,7 @@ export function normalizeGatewayTokenInput(value: unknown): string {
 }
 
 export function printWizardHeader(runtime: RuntimeEnv) {
-  const header = [
-    "                  🦀 OPENCRAB 🦀                    ",
-    " ",
-  ].join("\n");
+  const header = ["                  🦀 OPENCRAB 🦀                    ", " "].join("\n");
   runtime.log(header);
 }
 

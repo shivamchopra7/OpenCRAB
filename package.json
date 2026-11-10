@@ -5,21 +5,21 @@
   "keywords": [
     "ai",
     "assistant",
-    "whatsapp",
-    "telegram",
     "discord",
+    "personal-assistant",
     "slack",
-    "personal-assistant"
+    "telegram",
+    "whatsapp"
   ],
+  "homepage": "https://illusionart.ai",
+  "bugs": {
+    "url": "https://github.com/shivamchopra7/OpenCRAB/issues"
+  },
   "license": "MIT",
   "author": "Shivam Chopra <shivam@illusionart.ai>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shivamchopra7/OpenCRAB.git"
-  },
-  "homepage": "https://illusionart.ai",
-  "bugs": {
-    "url": "https://github.com/shivamchopra7/OpenCRAB/issues"
   },
   "bin": {
     "opencrab": "opencrab.mjs"
@@ -208,7 +208,8 @@
       "qs": "6.14.1",
       "@sinclair/typebox": "0.34.47",
       "tar": "7.5.7",
-      "tough-cookie": "4.1.3"
+      "tough-cookie": "4.1.3",
+      "@grammyjs/types": "3.28.0"
     },
     "onlyBuiltDependencies": [
       "@lydell/node-pty",
