@@ -253,7 +253,7 @@ export function resolveOAuthPath(
 }
 
 export function resolveGatewayPort(
-  cfg?: OpenCRABConfig | OpenClawConfig,
+  cfg?: OpenClawConfig,
   env: NodeJS.ProcessEnv = process.env,
 ): number {
   const envRaw =

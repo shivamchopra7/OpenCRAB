@@ -503,7 +503,10 @@ export async function startNostrBus(options: NostrBusOptions): Promise<NostrBusH
         metrics.emit("relay.message.closed", 1, { relay });
         options.onDisconnect?.(relay);
       }
-      onError?.(new Error(`Subscription closed: ${reason.join(", ")}`), "subscription");
+      onError?.(
+        new Error(`Subscription closed: ${reason.map((item) => String(item)).join(", ")}`),
+        "subscription",
+      );
     },
   });
 

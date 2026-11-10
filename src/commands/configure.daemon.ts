@@ -79,7 +79,7 @@ export async function maybeInstallDaemon(params: {
             initialValue: DEFAULT_GATEWAY_DAEMON_RUNTIME,
           }),
           params.runtime,
-        ) as GatewayDaemonRuntime;
+        );
       }
     }
     await withProgress(
