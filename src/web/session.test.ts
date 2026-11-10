@@ -186,14 +186,8 @@ describe("web session", () => {
   });
 
   it("rotates creds backup when creds.json is valid JSON", async () => {
-    const credsSuffix = path.join(".openclaw", "credentials", "whatsapp", "default", "creds.json");
-    const backupSuffix = path.join(
-      ".openclaw",
-      "credentials",
-      "whatsapp",
-      "default",
-      "creds.json.bak",
-    );
+    const credsSuffix = path.join("credentials", "whatsapp", "default", "creds.json");
+    const backupSuffix = path.join("credentials", "whatsapp", "default", "creds.json.bak");
 
     const copySpy = vi.spyOn(fsSync, "copyFileSync").mockImplementation(() => {});
     const existsSpy = vi.spyOn(fsSync, "existsSync").mockImplementation((p) => {

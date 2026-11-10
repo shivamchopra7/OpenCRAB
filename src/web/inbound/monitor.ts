@@ -127,6 +127,11 @@ export async function monitorWebInbox(options: {
     if (cached && cached.expires > Date.now()) {
       return cached;
     }
+    if (typeof sock.groupMetadata !== "function") {
+      const entry = { expires: Date.now() + GROUP_META_TTL_MS };
+      groupMetaCache.set(jid, entry);
+      return entry;
+    }
     try {
       const meta = await sock.groupMetadata(jid);
       const participants =
