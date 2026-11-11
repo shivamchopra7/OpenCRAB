@@ -88,7 +88,7 @@ jobs:
             command: pnpm format
           - runtime: bun
             task: test
-            command: pnpm canvas:a2ui:bundle && bunx vitest run
+            command: pnpm canvas:a2ui:bundle && pnpm test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -185,6 +185,7 @@ jobs:
     runs-on: windows-latest
     env:
       NODE_OPTIONS: --max-old-space-size=4096
+      OPENCLAW_TEST_WORKERS: 1
       CLAWDBOT_TEST_WORKERS: 1
     defaults:
       run:

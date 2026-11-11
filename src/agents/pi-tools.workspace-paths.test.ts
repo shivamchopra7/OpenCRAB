@@ -4,11 +4,22 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { createOpenClawCodingTools } from "./pi-tools.js";
 
-async function withTempDir<T>(prefix: string, fn: (dir: string) => Promise<T>) {
+async function withTempDir<T>(
+  prefix: string,
+  fn: (dir: string) => Promise<T>,
+  restoreCwd?: string,
+) {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), prefix));
   try {
     return await fn(dir);
   } finally {
+    if (restoreCwd) {
+      try {
+        process.chdir(restoreCwd);
+      } catch {
+        // ignore if already restored
+      }
+    }
     await fs.rm(dir, { recursive: true, force: true });
   }
 }
@@ -19,82 +30,105 @@ function getTextContent(result?: { content?: Array<{ type: string; text?: string
 }
 
 describe("workspace path resolution", () => {
+  const initialCwd = process.cwd();
+
   it("reads relative paths against workspaceDir even after cwd changes", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-cwd-", async (otherDir) => {
-        const prevCwd = process.cwd();
-        const testFile = "read.txt";
-        const contents = "workspace read ok";
-        await fs.writeFile(path.join(workspaceDir, testFile), contents, "utf8");
+    await withTempDir(
+      "openclaw-ws-",
+      async (workspaceDir) => {
+        await withTempDir(
+          "openclaw-cwd-",
+          async (otherDir) => {
+            const testFile = "read.txt";
+            const contents = "workspace read ok";
+            await fs.writeFile(path.join(workspaceDir, testFile), contents, "utf8");
 
-        process.chdir(otherDir);
-        try {
-          const tools = createOpenClawCodingTools({ workspaceDir });
-          const readTool = tools.find((tool) => tool.name === "read");
-          expect(readTool).toBeDefined();
+            process.chdir(otherDir);
+            try {
+              const tools = createOpenClawCodingTools({ workspaceDir });
+              const readTool = tools.find((tool) => tool.name === "read");
+              expect(readTool).toBeDefined();
 
-          const result = await readTool?.execute("ws-read", { path: testFile });
-          expect(getTextContent(result)).toContain(contents);
-        } finally {
-          process.chdir(prevCwd);
-        }
-      });
-    });
+              const result = await readTool?.execute("ws-read", { path: testFile });
+              expect(getTextContent(result)).toContain(contents);
+            } finally {
+              process.chdir(initialCwd);
+            }
+          },
+          initialCwd,
+        );
+      },
+      initialCwd,
+    );
   });
 
   it("writes relative paths against workspaceDir even after cwd changes", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-cwd-", async (otherDir) => {
-        const prevCwd = process.cwd();
-        const testFile = "write.txt";
-        const contents = "workspace write ok";
+    await withTempDir(
+      "openclaw-ws-",
+      async (workspaceDir) => {
+        await withTempDir(
+          "openclaw-cwd-",
+          async (otherDir) => {
+            const testFile = "write.txt";
+            const contents = "workspace write ok";
 
-        process.chdir(otherDir);
-        try {
-          const tools = createOpenClawCodingTools({ workspaceDir });
-          const writeTool = tools.find((tool) => tool.name === "write");
-          expect(writeTool).toBeDefined();
+            process.chdir(otherDir);
+            try {
+              const tools = createOpenClawCodingTools({ workspaceDir });
+              const writeTool = tools.find((tool) => tool.name === "write");
+              expect(writeTool).toBeDefined();
 
-          await writeTool?.execute("ws-write", {
-            path: testFile,
-            content: contents,
-          });
+              await writeTool?.execute("ws-write", {
+                path: testFile,
+                content: contents,
+              });
 
-          const written = await fs.readFile(path.join(workspaceDir, testFile), "utf8");
-          expect(written).toBe(contents);
-        } finally {
-          process.chdir(prevCwd);
-        }
-      });
-    });
+              const written = await fs.readFile(path.join(workspaceDir, testFile), "utf8");
+              expect(written).toBe(contents);
+            } finally {
+              process.chdir(initialCwd);
+            }
+          },
+          initialCwd,
+        );
+      },
+      initialCwd,
+    );
   });
 
   it("edits relative paths against workspaceDir even after cwd changes", async () => {
-    await withTempDir("openclaw-ws-", async (workspaceDir) => {
-      await withTempDir("openclaw-cwd-", async (otherDir) => {
-        const prevCwd = process.cwd();
-        const testFile = "edit.txt";
-        await fs.writeFile(path.join(workspaceDir, testFile), "hello world", "utf8");
+    await withTempDir(
+      "openclaw-ws-",
+      async (workspaceDir) => {
+        await withTempDir(
+          "openclaw-cwd-",
+          async (otherDir) => {
+            const testFile = "edit.txt";
+            await fs.writeFile(path.join(workspaceDir, testFile), "hello world", "utf8");
 
-        process.chdir(otherDir);
-        try {
-          const tools = createOpenClawCodingTools({ workspaceDir });
-          const editTool = tools.find((tool) => tool.name === "edit");
-          expect(editTool).toBeDefined();
+            process.chdir(otherDir);
+            try {
+              const tools = createOpenClawCodingTools({ workspaceDir });
+              const editTool = tools.find((tool) => tool.name === "edit");
+              expect(editTool).toBeDefined();
 
-          await editTool?.execute("ws-edit", {
-            path: testFile,
-            oldText: "world",
-            newText: "openclaw",
-          });
+              await editTool?.execute("ws-edit", {
+                path: testFile,
+                oldText: "world",
+                newText: "openclaw",
+              });
 
-          const updated = await fs.readFile(path.join(workspaceDir, testFile), "utf8");
-          expect(updated).toBe("hello openclaw");
-        } finally {
-          process.chdir(prevCwd);
-        }
-      });
-    });
+              const updated = await fs.readFile(path.join(workspaceDir, testFile), "utf8");
+              expect(updated).toBe("hello openclaw");
+            } finally {
+              process.chdir(initialCwd);
+            }
+          },
+          initialCwd,
+        );
+      },
+      initialCwd,
+    );
   });
 
   it("defaults exec cwd to workspaceDir when workdir is omitted", async () => {
